@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodTunes - AI Powered Music Recommendations</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <h1><i class="fas fa-music"></i> MoodTunes</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+                    <li><a href="#how-it-works" class="nav-link" data-section="how-it-works">How It Works</a></li>
+                    <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                    <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Discover Music That Matches Your Mood</h1>
+                    <p>Our AI analyzes your emotions and recommends the perfect soundtrack for every moment</p>
+                    <button class="cta-button" id="getStartedBtn">Get Started</button>
+                </div>
+                
+                <!-- Mood Selector Section -->
+                <div class="mood-selector" id="moodSelector">
+                    <h2>How Are You Feeling Today?</h2>
+                    <p>Select your current mood to get personalized music recommendations</p>
+                    
+                    <div class="moods-grid">
+                        <div class="mood-card" data-mood="happy">
+                            <i class="fas fa-smile-beam"></i>
+                            <h3>Happy</h3>
+                            <p>Energetic & Uplifting</p>
+                        </div>
+                        
+                        <div class="mood-card" data-mood="sad">
+                            <i class="fas fa-sad-tear"></i>
+                            <h3>Sad</h3>
+                            <p>Melancholic & Reflective</p>
+                        </div>
+                        
+                        <div class="mood-card" data-mood="energetic">
+                            <i class="fas fa-bolt"></i>
+                            <h3>Energetic</h3>
+                            <p>High Tempo & Intense</p>
+                        </div>
+                        
+                        <div class="mood-card" data-mood="calm">
+                            <i class="fas fa-spa"></i>
+                            <h3>Calm</h3>
+                            <p>Relaxing & Peaceful</p>
+                        </div>
+                        
+                        <div class="mood-card" data-mood="romantic">
+                            <i class="fas fa-heart"></i>
+                            <h3>Romantic</h3>
+                            <p>Lovely & Sentimental</p>
+                        </div>
+                        
+                        <div class="mood-card" data-mood="focused">
+                            <i class="fas fa-brain"></i>
+                            <h3>Focused</h3>
+                            <p>Concentration & Study</p>
+                        </div>
+                    </div>
+                    
+                    <div class="custom-mood">
+                        <h3>Or describe your mood in your own words:</h3>
+                        <textarea id="customMoodInput" placeholder="e.g., feeling nostalgic after a rainy day..."></textarea>
+                        <button id="analyzeCustomMood">Analyze My Mood</button>
+                    </div>
+                </div>
+                
+                <!-- Recommendations Section -->
+                <div class="recommendations" id="recommendations">
+                    <h2>Your Personalized Recommendations</h2>
+                    <div class="loading" id="loadingIndicator">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Analyzing your mood and finding the perfect tracks...</p>
+                    </div>
+                    <div class="recommendations-grid" id="recommendationsGrid">
+                        <!-- Recommendations will be populated here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                        <h3>Describe Your Mood</h3>
+                        <p>Either select a predefined mood (Happy, Sad, Energetic, Calm, Romantic, Focused) or describe your feelings in your own words</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Mood Analysis</h3>
+                        <p>Our system analyzes your input using keyword matching to detect your emotional state. For custom text, we match against predefined keywords for each mood category.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Music Recommendations</h3>
+                        <p>Get personalized music recommendations from Spotify that match your current mood, or listen to demo tracks if Spotify is not connected.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <h3>Enjoy Your Music</h3>
+                        <p>Listen to 30-second preview tracks directly in your browser with our built-in HTML5 audio player.</p>
+                    </div>
+                </div>
+                
+                <div class="mood-tips">
+                    <h3>How to Get Recommendations for Specific Moods</h3>
+                    <p>To get recommendations for moods other than happy:</p>
+                    <ul>
+                        <li><strong>Use mood-specific words</strong> in your description:
+                            <ul>
+                                <li>For Sad: "feeling sad today", "depressed", "melancholy"</li>
+                                <li>For Energetic: "need energy", "workout music", "party time"</li>
+                                <li>For Calm: "relaxing", "peaceful", "calm down"</li>
+                                <li>For Romantic: "love songs", "romantic evening", "heartfelt"</li>
+                                <li>For Focused: "need focus", "study music", "concentrate"</li>
+                            </ul>
+                        </li>
+                        <li><strong>Select a predefined mood card</strong> directly (Happy, Sad, Energetic, Calm, Romantic, Focused)</li>
+                    </ul>
+                    <p>If no mood keywords are detected, the system defaults to Happy recommendations.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about" id="about">
+            <div class="container">
+                <h2>About MoodTunes</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>MoodTunes is an AI-powered music recommendation platform that connects your emotions to the perfect soundtrack. Our mission is to enhance your daily life by providing music that truly resonates with how you're feeling.</p>
+                        <p>The application uses a rule-based approach for mood detection, matching keywords in your text input to predefined mood categories. For more advanced mood analysis, the system can be extended with machine learning models using TensorFlow.</p>
+                        <p>Whether you're feeling happy, sad, energetic, calm, romantic, or focused, MoodTunes provides the perfect music for every moment of your day.</p>
+                    </div>
+                    <div class="about-features">
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Rule-based mood detection with keyword matching</li>
+                            <li><i class="fas fa-check"></i> Spotify integration for real music recommendations</li>
+                            <li><i class="fas fa-check"></i> Demo mode with sample tracks when Spotify is not available</li>
+                            <li><i class="fas fa-check"></i> Built-in HTML5 audio player for track previews</li>
+                            <li><i class="fas fa-check"></i> Responsive design that works on all devices</li>
+                            <li><i class="fas fa-check"></i> Extensible with machine learning models</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <p>Have questions or feedback? We'd love to hear from you!</p>
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@moodtunes.com</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>San Francisco, CA</span>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send us a message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="cta-button">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2><i class="fas fa-music"></i> MoodTunes</h2>
+                    <p>AI-powered music recommendations for every mood</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 MoodTunes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
